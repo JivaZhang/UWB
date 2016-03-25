@@ -1,17 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Student(models.Model):
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
-    login = models.CharField(max_length=45)
-    password = models.CharField(max_length=45)
     index_number = models.CharField(max_length=45)
 
 class Lecturer(models.Model):
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
-    login = models.CharField(max_length=45)
-    password = models.CharField(max_length=45)
 
 class Classes(models.Model):
     name = models.CharField(max_length=45)
