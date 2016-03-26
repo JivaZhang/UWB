@@ -5,11 +5,12 @@ class SaveUser(object):
     def __init__(self, request):
         self._state_of_register = False
         data = self._serialize_data(request)
-        self._save_user_for_login(data)
         if self._is_index_number_in_correct_format(data['index_number']):
+            self._save_user_for_login(data)
             self._save_student(data)
             self._state_of_register = True
         elif data['staff']:
+            self._save_user_for_login(data)
             self._save_lecturer(data)
             self._state_of_register = True
 
@@ -20,19 +21,19 @@ class SaveUser(object):
 
     def _serialize_data(self, data):
         response = {
-                'username' : data.username,
-                'password' : data.password,
-                'first_name' : data.first_name,
-                'last_name' : data.last_name,
-                'staff' : data.staff,
+                'username' : data.POST['username'],
+                'password' : data.POST['password'],
+                'first_name' : data.POST['first_name'],
+                'last_name' : data.POST['last_name'],
+                'staff' : data.POST.get('staff', False),
             }
         try:
-            response['index_number'] = data.index_number
+            response['index_number'] = data.POST['index_number']
         except:
             response['index_number'] = False
         return response
 
-    def _is_index_number_in_correct_format(index_number):
+    def _is_index_number_in_correct_format(self, index_number):
         if index_number:
             return index_number.isdigit()
         return False
@@ -45,6 +46,7 @@ class SaveUser(object):
                 last_name=data['last_name'],
                 is_staff=data['staff']
             )
+        print("Saved new user with {} name".format(data['username']))
         new_user.save()
 
     def _save_student(self, data):
@@ -53,6 +55,7 @@ class SaveUser(object):
                 last_name=data['last_name'],
                 index_number=data['index_number']
             )
+        print("Saved new student with {} name".format(data['username']))
         student.save()
 
     def _save_lecturer(self, data):
@@ -60,4 +63,5 @@ class SaveUser(object):
                 first_name=data['first_name'],
                 last_name=data['last_name'],
             )
+        print("Saved new lecturer with {} name".format(data['username']))
         lecturer.save()

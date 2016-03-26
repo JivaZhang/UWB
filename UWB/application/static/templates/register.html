@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    </head>
-
-    <body>
-        TEST
-    </body>
+<head></head>
+<body>
+<form action="/uwb/register/" method="post" accept-charset="utf-8">
+    {% csrf_token %}
+    <label for="first_name">Imię: </label>
+    <input type="text" name="first_name">
+    <label for="last_name">Nazwisko: </label>
+    <input type="text" name="last_name">
+    <label for="username">Nazwa Użytkownika: </label>
+    <input type="text" name="username">
+    <label for="password">Hasło: </label>
+    <input type="password" name="password">
+    <label for="index_number">Nr indeksu: </label>
+    <input type="text" name="index_number">
+    <label for="staff">Wykładowca: </label>
+    <input type="checkbox" value=True name="staff">
+    <input type="submit" value="OK">
+</form>
+</body>
 </html>
