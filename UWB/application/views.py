@@ -12,7 +12,11 @@ def register_user(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    current_logged_user = request.user
+    if current_logged_user.is_staff:
+        return render(request, 'staff_profile.html')
+    else:
+        return render(request, 'profile.html')
 
 
 
