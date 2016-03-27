@@ -12,8 +12,10 @@ def to_index(request):
 
 def register_user(request):
     if request.method == 'POST':
-        SaveUser(request)
-        return redirect('/uwb/')
+        if SaveUser(request).registered:
+            return redirect('/uwb/')
+        else:
+            return redirect('/uwb/register/')
     return render(request, 'register.html')
 
 @login_required

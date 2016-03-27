@@ -6,7 +6,7 @@
         {% if user.is_authenticated %}
                 <p> Witaj {{ user.username }}, <a href="/uwb/logout/">wyloguj</a></p>
             {% else %}
-                <p> Nie jesteś zalogowany, naciśnij <a href="/uwb/login/">login</a> aby się zalogować </p>
+                <p> Nie jesteś zalogowany, naciśnij <a href="/uwb/login/">login</a> aby się zalogować, lub <a href="/uwb/register/">rejestracja</a> aby się zarejestrować </p>
             {% endif %}
         {% block content %}
         {% endblock %}

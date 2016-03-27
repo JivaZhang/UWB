@@ -3,21 +3,32 @@ from .models import *
 
 class SaveUser(object):
     def __init__(self, request):
-        self._state_of_register = False
         data = self._serialize_data(request)
-        if self._is_index_number_in_correct_format(data['index_number']):
-            self._save_user_for_login(data)
-            self._save_student(data)
-            self._state_of_register = True
-        elif data['staff']:
-            self._save_user_for_login(data)
-            self._save_lecturer(data)
-            self._state_of_register = True
+        if self._is_data_valid(data):
+            if self._is_index_number_in_correct_format(data['index_number']):
+                self._save_user_for_login(data)
+                self._save_student(data)
+                self._state_of_register = True
+            elif data['staff']:
+                self._save_user_for_login(data)
+                self._save_lecturer(data)
+                self._state_of_register = True
+            else:
+                self._state_of_register = False
+        else:
+            self._state_of_register = False
 
     @property
     def registered(self):
         return self._state_of_register
-    
+
+
+    def _is_data_valid(self, data):
+        return (data['username'] and
+                data['password'] and
+                data['first_name'] and
+                data['last_name'])
+     
 
     def _serialize_data(self, data):
         response = {
