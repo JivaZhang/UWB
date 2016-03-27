@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+                <p> Witaj {{ user.username }}, <a href="/uwb/logout/">wyloguj</a></p>
+            {% else %}
+                <p> Nie jesteś zalogowany, naciśnij <a href="/uwb/login/">login</a> aby się zalogować </p>
+            {% endif %}
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

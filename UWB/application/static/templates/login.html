@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
+{% block content %}
     <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
         {% csrf_token %}
         {{form}}<br/>
        <input type="submit" value="login" />
        <input type="hidden" name="next" value="{{ next }}" />
    </form>
-</html>
+{% endblock content %}

@@ -1,22 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head></head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
 <form action="/uwb/register/" method="post" accept-charset="utf-8">
     {% csrf_token %}
-    <label for="first_name">Imię: </label>
-    <input type="text" name="first_name">
-    <label for="last_name">Nazwisko: </label>
-    <input type="text" name="last_name">
-    <label for="username">Nazwa Użytkownika: </label>
-    <input type="text" name="username">
-    <label for="password">Hasło: </label>
-    <input type="password" name="password">
-    <label for="index_number">Nr indeksu: </label>
-    <input type="text" name="index_number">
-    <label for="staff">Wykładowca: </label>
-    <input type="checkbox" value=True name="staff">
-    <input type="submit" value="OK">
-</form>
-</body>
-</html>
+    <p><label for="first_name">Imię: </label>
+    <input type="text" name="first_name"></p>
+    <p><label for="last_name">Nazwisko: </label>
+    <input type="text" name="last_name"></p>
+    <p><label for="username">Nazwa Użytkownika: </label>
+    <input type="text" name="username"></p>
+    <p><label for="password">Hasło: </label>
+    <input type="password" name="password"></p>
+    <p><label for="index_number">Nr indeksu: </label>
+    <input type="text" name="index_number"></p>
+    <p><label for="staff">Wykładowca: </label>
+    <input type="checkbox" value=True name="staff"></p>
+    <p><input type="submit" value="OK"></p>
+{% endblock content %}
