@@ -11,10 +11,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if options['user']:
             self._seed_with_users()
-        #try:
-        self._select_set(options['data_to_seed_label'][0])
-        #except:
-            #print('No set of data selected to seed')
+        try:
+            self._select_set(options['data_to_seed_label'][0])
+        except:
+            print('No set of data selected to seed')
 
     def _select_set(self, label):
         if label == 1:

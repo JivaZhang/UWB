@@ -80,3 +80,33 @@ class SaveUser(object):
 class SerializeForPostSave(object):
     def __init__(self, data):
         self.POST = data
+
+class CollectDataForLecturer(object):
+    def __init__(self, lecturer):
+        self._get_lecturer_data(lecturer)
+
+    def _get_lecturer_data(self, lecturer):
+        classes = self._get_lecturer_classes_ids(lecturer)
+        attendance_by_cls = [self._get_lecturer_attendance_ids(lecturer, cls) for cls in classes]
+        students_by_cls = {}
+        #for attendance in attendance_by_cls:
+        #student = [self._get_lecturer_students_ids(att) for att in attendance]
+
+    def _get_lecturer_classes_ids(self, lecturer):
+        return Classes.objects.filter(lecturer=lecturer)
+
+    def _get_lecturer_attendance_ids(self, lecturer, classes):
+        return Attendance.objects.filter(lecturer=lecturer, classes=classes)
+
+    def _get_lecturer_students_ids(self, attendance):
+        return attendance.student
+
+    #@property
+    #def lecturer_data(self):
+    #    return self._lecturer_data
+    
+
+
+
+
+
