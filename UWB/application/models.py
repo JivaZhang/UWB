@@ -26,3 +26,4 @@ class Mark(models.Model):
     lecturer = models.ForeignKey('Lecturer')
     classes = models.ForeignKey('Classes')
 
+

@@ -76,3 +76,7 @@ class SaveUser(object):
             )
         print("Saved new lecturer with {} name".format(data['username']))
         lecturer.save()
+
+class SerializeForPostSave(object):
+    def __init__(self, data):
+        self.POST = data

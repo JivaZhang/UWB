@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from .utility import SaveUser
 
+
 def index(request):
     return render(request, 'index.html')
 
