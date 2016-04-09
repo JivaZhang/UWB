@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/logout.css' %}">
+{% endblock head %}
 {% block content %}
     <p>Zostałeś wylogowany, zaloguj ponownie. <a href="/uwb/login/">tutaj</a>.</p> 
 {% endblock content %}

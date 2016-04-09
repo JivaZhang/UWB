@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/staff_profile.css' %}">
+{% endblock head %}
 {% block content %}
     <p>Profil obsługi</p>
 {% endblock content %}
