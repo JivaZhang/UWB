@@ -19,7 +19,7 @@ class Command(BaseCommand):
             self._drop_attendance('attendance')
             self._drop_classes('classes')
             self._drop_authorization_user('authorization')
-            self._drop_authorization_user('student')
+            self._drop_student_user('student')
             self._drop_lecturer_user('lecturer')
         else:
             if label['attendance']:

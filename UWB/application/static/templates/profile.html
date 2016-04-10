@@ -4,5 +4,18 @@
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock head %}
 {% block content %}
-    <p>Profil normalny</p>
+    <p>Profil studenta</p>
+    <p> Dane dla użytkownika: {{ collected_data.student_name }} </p>
+    {% for attendance in collected_data.student_data %}
+        <p>
+        {{ attendance.classes_name }},
+        {{ attendance.lecturer_name }},
+        {{ attendance.attendance_date }},
+        {% if attendance.attendance %}
+            Obecny
+        {% else %}
+            Nieobecny
+        {% endif %} 
+        </p>
+    {% endfor %}
 {% endblock content %}

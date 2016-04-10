@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from .models import Lecturer, Student
-from .utility import SaveUser, CollectDataForLecturer
+from .utility import SaveUser, CollectDataForLecturer, CollectDataForStudent
 
 
 def index(request):
@@ -24,10 +24,11 @@ def register_user(request):
 def profile(request):
     current_logged_user = request.user
     if current_logged_user.is_staff:
-        CollectDataForLecturer(Lecturer.objects.get(last_name=current_logged_user.last_name))
-        return render(request, 'staff_profile.html')
+        l = CollectDataForLecturer(Lecturer.objects.get(last_name=current_logged_user.last_name))
+        return render(request, 'staff_profile.html', {'collected_data' : l.lecturer_data})
     else:
-        return render(request, 'profile.html')
+        s = CollectDataForStudent(Student.objects.get(last_name=current_logged_user.last_name))
+        return render(request, 'profile.html', {'collected_data' : s.student_data})
 
 
 
