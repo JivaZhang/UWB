@@ -27,23 +27,54 @@ class Command(BaseCommand):
     def _prepare_first_set(self):
         students = Student.objects.all()
         lecturer = Lecturer.objects.all()[0]
-        classes = Classes.objects.get_or_create(name='Wyklad1', lecturer=lecturer)[0]
-        date = datetime(2016, 4, 26, 15, 15)
-        self._set_attendance(date, students[0], lecturer, classes, True)
-        self._set_attendance(date, students[1], lecturer, classes, False)
-        self._set_attendance(date, students[2], lecturer, classes, False)
-        self._set_attendance(date, students[3], lecturer, classes, True)
+        classes1 = Classes.objects.get_or_create(name='Wyklad1', lecturer=lecturer)[0]
+        classes2 = Classes.objects.get_or_create(name='Wyklad2', lecturer=lecturer)[0]
+        classes3 = Classes.objects.get_or_create(name='Wyklad3', lecturer=lecturer)[0]
+        date1 = datetime(2016, 4, 17, 7, 30)
+        date2 = datetime(2016, 4, 17, 9, 15)
+        date3 = datetime(2016, 4, 17, 11, 15)
+        #
+        self._set_attendance(date1, students[0], lecturer, classes1, True)
+        self._set_attendance(date1, students[1], lecturer, classes1, False)
+        self._set_attendance(date1, students[2], lecturer, classes1, False)
+        self._set_attendance(date1, students[3], lecturer, classes1, True)
+        #
+        self._set_attendance(date2, students[0], lecturer, classes2, True)
+        self._set_attendance(date2, students[1], lecturer, classes2, True)
+        self._set_attendance(date2, students[2], lecturer, classes2, True)
+        self._set_attendance(date2, students[3], lecturer, classes2, False)
+        #
+        self._set_attendance(date3, students[0], lecturer, classes3, False)
+        self._set_attendance(date3, students[1], lecturer, classes3, False)
+        self._set_attendance(date3, students[2], lecturer, classes3, False)
+        self._set_attendance(date3, students[3], lecturer, classes3, False)
 
 
     def _prepare_second_set(self):
         students = Student.objects.all()
         lecturer = Lecturer.objects.all()[0]
-        classes = Classes.objects.get_or_create(name='Wyklad1', lecturer=lecturer)[0]
-        date = datetime(2016, 4, 26, 15, 15)
-        self._set_attendance(date, students[0], lecturer, classes, False)
-        self._set_attendance(date, students[1], lecturer, classes, True)
-        self._set_attendance(date, students[2], lecturer, classes, True)
-        self._set_attendance(date, students[3], lecturer, classes, False)
+        classes1 = Classes.objects.get_or_create(name='Wyklad1', lecturer=lecturer)[0]
+        classes2 = Classes.objects.get_or_create(name='Wyklad2', lecturer=lecturer)[0]
+        classes3 = Classes.objects.get_or_create(name='Wyklad3', lecturer=lecturer)[0]
+        date1 = datetime(2016, 4, 17, 7, 30)
+        date2 = datetime(2016, 4, 17, 9, 15)
+        date3 = datetime(2016, 4, 17, 11, 15)
+        #
+        self._set_attendance(date1, students[0], lecturer, classes1, False)
+        self._set_attendance(date1, students[1], lecturer, classes1, True)
+        self._set_attendance(date1, students[2], lecturer, classes1, True)
+        self._set_attendance(date1, students[3], lecturer, classes1, False)
+        #
+        self._set_attendance(date2, students[0], lecturer, classes2, False)
+        self._set_attendance(date2, students[1], lecturer, classes2, False)
+        self._set_attendance(date2, students[2], lecturer, classes2, False)
+        self._set_attendance(date2, students[3], lecturer, classes2, True)
+        #
+        self._set_attendance(date3, students[0], lecturer, classes3, True)
+        self._set_attendance(date3, students[1], lecturer, classes3, True)
+        self._set_attendance(date3, students[2], lecturer, classes3, False)
+        self._set_attendance(date3, students[3], lecturer, classes3, True)
+
 
     def _set_attendance(self, date, student, lecturer, classes, is_attend):
         try:

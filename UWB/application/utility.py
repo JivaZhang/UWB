@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from .models import *
+from datetime import datetime,timedelta
 from pprint import pprint
 
 class SaveUser(object):
@@ -85,6 +86,7 @@ class SerializeForPostSave(object):
 class CollectDataForLecturer(object):
     def __init__(self, lecturer):
         self._get_lecturer_data(lecturer)
+        self._get_filtred_lecturer_data(lecturer)
 
     def _get_lecturer_data(self, lecturer):
         lecturer_name = "{} {}".format(lecturer.first_name, lecturer.last_name)
@@ -100,14 +102,60 @@ class CollectDataForLecturer(object):
                             'first_name' : student_data.first_name,
                             'last_name' : student_data.last_name,
                             'index_number' : student_data.index_number,
-                            'attendance_date' : str(attendance.date)[:-9],
+                            'attendance_date' : str(attendance.date)[:-3],
                             'attendance' : attendance.attend
                         }
                     )
-        #pprint(self._lecturer_data)
+
+    def _get_filtred_lecturer_data(self, lecturer):
+        actual_data = self._convert_actual_date_to_classes_begin_date()
+        lecturer_name = "{} {}".format(lecturer.first_name, lecturer.last_name)
+        self._lecturer_filtered_data = {'lecturer_filtred_data' : "", 'lecturer_name' : lecturer_name}
+        classes = self._get_lecturer_classes_ids(lecturer)
+        self._lecturer_filtered_data['lecturer_data'] = self._get_classes_name(classes)
+        attendance_by_cls = [self._get_lecturer_attendance_ids_by_date(lecturer, cls, actual_data) for cls in classes]
+        for cls_idx, attendances in enumerate(attendance_by_cls):
+            for attendance in attendances:
+                student_data = self._get_lecturer_students_ids(attendance)
+                self._lecturer_filtered_data['lecturer_data'][cls_idx]['classes_data'].append(
+                        {
+                            'first_name' : student_data.first_name,
+                            'last_name' : student_data.last_name,
+                            'index_number' : student_data.index_number,
+                            'attendance_date' : str(attendance.date)[:-3],
+                            'attendance' : attendance.attend
+                        }
+                    )
+        self._filter_from_empty()
+
+    def _convert_actual_date_to_classes_begin_date(self):
+        actual_data = str(datetime.now() + timedelta(hours=2))[:-16]
+        classes_begin = []
+        classes_begin.append(datetime.strptime(actual_data + ' 7:30', '%Y-%m-%d %H:%M'))
+        classes_begin.append(datetime.strptime(actual_data + ' 9:15', '%Y-%m-%d %H:%M'))
+        classes_begin.append(datetime.strptime(actual_data + ' 11:15', '%Y-%m-%d %H:%M'))
+        classes_begin.append(datetime.strptime(actual_data + ' 13:15', '%Y-%m-%d %H:%M'))
+        classes_begin.append(datetime.strptime(actual_data + ' 15:15', '%Y-%m-%d %H:%M'))
+        classes_begin.append(datetime.strptime(actual_data + ' 17:5', '%Y-%m-%d %H:%M'))
+        classes_begin.append(datetime.strptime(actual_data + ' 18:55', '%Y-%m-%d %H:%M'))
+        actual_data = datetime.now() + timedelta(hours=2)
+        for i in range(1,len(classes_begin)):
+            if actual_data < classes_begin[i]:
+                return classes_begin[i-1]
+
+    def _filter_from_empty(self):
+        filtred_classes = []
+        for data in self._lecturer_filtered_data['lecturer_data']:
+            if data['classes_data']:
+                filtred_classes.append(data)
+        self._lecturer_filtered_data['lecturer_data'] = filtred_classes
+
 
     def _get_lecturer_classes_ids(self, lecturer):
         return Classes.objects.filter(lecturer=lecturer)
+
+    def _get_lecturer_attendance_ids_by_date(self, lecturer, classes, date):
+        return Attendance.objects.filter(lecturer=lecturer, classes=classes, date=date)
 
     def _get_lecturer_attendance_ids(self, lecturer, classes):
         return Attendance.objects.filter(lecturer=lecturer, classes=classes)
@@ -121,6 +169,10 @@ class CollectDataForLecturer(object):
     @property
     def lecturer_data(self):
         return self._lecturer_data
+
+    @property
+    def lecturer_filtered_data(self):
+        return self._lecturer_filtered_data
 
 class CollectDataForStudent(object):
     def __init__(self, student):
@@ -136,12 +188,11 @@ class CollectDataForStudent(object):
             self._student_data['student_data'].append(
                     {
                         'attendance' : attendance.attend,
-                        'attendance_date' : str(attendance.date)[:-9],
+                        'attendance_date' : str(attendance.date)[:-3],
                         'classes_name' : classes.name,
                         'lecturer_name' : "{} {}".format(lecturer.first_name, lecturer.last_name)
                     }
                 )
-        #pprint(self._student_data)
 
 
     def _get_student_attendance_ids(self, student):

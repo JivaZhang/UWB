@@ -21,11 +21,19 @@ def register_user(request):
     return render(request, 'register.html')
 
 @login_required
-def profile(request):
+def all(request):
     current_logged_user = request.user
     if current_logged_user.is_staff:
         l = CollectDataForLecturer(Lecturer.objects.get(last_name=current_logged_user.last_name))
         return render(request, 'staff_profile.html', {'collected_data' : l.lecturer_data})
+
+
+@login_required
+def profile(request):
+    current_logged_user = request.user
+    if current_logged_user.is_staff:
+        l = CollectDataForLecturer(Lecturer.objects.get(last_name=current_logged_user.last_name))
+        return render(request, 'staff_profile.html', {'collected_data' : l.lecturer_filtered_data})
     else:
         s = CollectDataForStudent(Student.objects.get(last_name=current_logged_user.last_name))
         return render(request, 'profile.html', {'collected_data' : s.student_data})
