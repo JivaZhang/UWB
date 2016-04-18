@@ -109,6 +109,7 @@ class CollectDataForLecturer(object):
 
     def _get_filtred_lecturer_data(self, lecturer):
         actual_data = self._convert_actual_date_to_classes_begin_date()
+        print("actual_data", actual_data)
         lecturer_name = "{} {}".format(lecturer.first_name, lecturer.last_name)
         self._lecturer_filtered_data = {'lecturer_filtred_data' : "", 'lecturer_name' : lecturer_name}
         classes = self._get_lecturer_classes_ids(lecturer)
@@ -136,12 +137,13 @@ class CollectDataForLecturer(object):
         classes_begin.append(datetime.strptime(actual_data + ' 11:15', '%Y-%m-%d %H:%M'))
         classes_begin.append(datetime.strptime(actual_data + ' 13:15', '%Y-%m-%d %H:%M'))
         classes_begin.append(datetime.strptime(actual_data + ' 15:15', '%Y-%m-%d %H:%M'))
-        classes_begin.append(datetime.strptime(actual_data + ' 17:5', '%Y-%m-%d %H:%M'))
+        classes_begin.append(datetime.strptime(actual_data + ' 17:05', '%Y-%m-%d %H:%M'))
         classes_begin.append(datetime.strptime(actual_data + ' 18:55', '%Y-%m-%d %H:%M'))
         actual_data = datetime.now() + timedelta(hours=2)
         for i in range(1,len(classes_begin)):
             if actual_data < classes_begin[i]:
                 return classes_begin[i-1]
+        return classes_begin[-1]
 
     def _filter_from_empty(self):
         filtred_classes = []

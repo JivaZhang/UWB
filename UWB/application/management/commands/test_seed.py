@@ -30,9 +30,9 @@ class Command(BaseCommand):
         classes1 = Classes.objects.get_or_create(name='Wyklad1', lecturer=lecturer)[0]
         classes2 = Classes.objects.get_or_create(name='Wyklad2', lecturer=lecturer)[0]
         classes3 = Classes.objects.get_or_create(name='Wyklad3', lecturer=lecturer)[0]
-        date1 = datetime(2016, 4, 17, 7, 30)
-        date2 = datetime(2016, 4, 17, 9, 15)
-        date3 = datetime(2016, 4, 17, 11, 15)
+        date1 = datetime(2016, 4, 18, 7, 30)
+        date2 = datetime(2016, 4, 18, 9, 15)
+        date3 = datetime(2016, 4, 18, 18, 55)
         #
         self._set_attendance(date1, students[0], lecturer, classes1, True)
         self._set_attendance(date1, students[1], lecturer, classes1, False)
@@ -56,9 +56,9 @@ class Command(BaseCommand):
         classes1 = Classes.objects.get_or_create(name='Wyklad1', lecturer=lecturer)[0]
         classes2 = Classes.objects.get_or_create(name='Wyklad2', lecturer=lecturer)[0]
         classes3 = Classes.objects.get_or_create(name='Wyklad3', lecturer=lecturer)[0]
-        date1 = datetime(2016, 4, 17, 7, 30)
-        date2 = datetime(2016, 4, 17, 9, 15)
-        date3 = datetime(2016, 4, 17, 11, 15)
+        date1 = datetime(2016, 4, 18, 7, 30)
+        date2 = datetime(2016, 4, 18, 9, 15)
+        date3 = datetime(2016, 4, 18, 18, 55)
         #
         self._set_attendance(date1, students[0], lecturer, classes1, False)
         self._set_attendance(date1, students[1], lecturer, classes1, True)
