@@ -5,7 +5,9 @@
 {% endblock head %}
 
 {% block content %}
-    <p>Profil wykładowycy</p>
+</br>
+<div class="panel">
+    <center><p3><u><b>Profil wykładowcy</b></u></p3></center></br>
     <p> Dane dla użytkownika: {{ collected_data.lecturer_name }} </p>
     {% for classes in collected_data.lecturer_data %}
     <p> Dane dla zajęć: {{ classes.classes_name }} </p>
@@ -22,4 +24,5 @@
              </p>
         {% endfor %}
     {% endfor %}
+</div>
 {% endblock content %}
