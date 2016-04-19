@@ -8,7 +8,7 @@
 </br>
 <div class="panel">
 	
-	    <center><p3><u><b>Rejestracja</b></u></p3></center></br>
+	    <center><p-rej><u><b>Rejestracja</b></u></p-rej></center></br>
 	    <form action="/uwb/register/" method="post" accept-charset="utf-8">
 	    {% csrf_token %}
 	    <p><label1 for="first_name"><b>Imię: </b></label1>

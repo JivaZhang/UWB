@@ -7,7 +7,7 @@
 {% block content %}
 </br>
 <div class="panel">
-	<center><p3><u><b>Logowanie</b></u></p3></center></br>
+	<center><p3><u><b>Login</b></u></p3></center></br>
 	<center>
 	<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 		{% csrf_token %}

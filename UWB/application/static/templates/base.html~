@@ -19,7 +19,7 @@
         	{% if user.is_authenticated %}
                 <p2> Witaj {{ user.username }}, <a href="/uwb/logout/">wyloguj</a>.</p2>
             	{% else %}
-                <p2> Nie jesteś zalogowany, naciśnij <a href="/uwb/login/">logowanie</a> aby się zalogować, lub <a href="/uwb/register/">rejestracja</a> aby się zarejestrować. </p2>
+                <p2> Nie jesteś zalogowany, naciśnij <a href="/uwb/login/">login</a> aby się zalogować, lub <a href="/uwb/register/">rejestracja</a> aby się zarejestrować. </p2>
             	{% endif %}
 		</center></br>
         {% block content %}

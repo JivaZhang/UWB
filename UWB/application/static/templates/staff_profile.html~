@@ -13,7 +13,7 @@
             <p> Student: {{ student.first_name }},
              {{ student.last_name }},
              {{ student.index_number }},
-             {{ student.attendance_date }},
+             {{ student.attendance_date }} ,
             {% if student.attendance %}
              Obecny
             {% else %}

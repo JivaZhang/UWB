@@ -32,5 +32,5 @@ h1 {
 p2 {
     color: #000000;
     font-family: 'Open Sans', sans-serif;
-    font-size: 14pt;
+    font-size: 18pt;
 }
