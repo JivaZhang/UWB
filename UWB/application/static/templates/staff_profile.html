@@ -13,15 +13,15 @@
     <p> Dane dla zajęć: {{ classes.classes_name }} </p>
         {% for student in classes.classes_data %}
             <p> Student: {{ student.first_name }},
-             {{ student.last_name }},
-             {{ student.index_number }},
-             {{ student.attendance_date }},
-            {% if student.attendance %}
-             Obecny
-            {% else %}
-             Nieobecny
-            {% endif %} 
-             </p>
+            	{{ student.last_name }},
+            	{{ student.index_number }},
+            	{{ student.attendance_date }},
+            	{% if student.attendance %}
+            		<font color="green">Obecny</font>
+            	{% else %}
+            		<font color="red">Nieobecny</font>
+            	{% endif %} 
+            </p>
         {% endfor %}
     {% endfor %}
 </div>

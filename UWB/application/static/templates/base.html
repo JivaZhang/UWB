@@ -14,18 +14,20 @@
 	<div class="page-header">
         <center><h1><a href ="/uwb/">System Weryfikacji Obecności Studentów</a></h1></center>
 	</div>
+	<div class="site">
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 		<center>
         	{% if user.is_authenticated %}
-                <p2> Witaj {{ user.username }}, <a href="/uwb/logout/">wyloguj</a>.</p2>
+                <p1> Witaj {{ user.username }}, <a href="/uwb/logout/">wyloguj</a>.</p1>
             	{% else %}
-                <p2> Nie jesteś zalogowany, naciśnij <a href="/uwb/login/">logowanie</a> aby się zalogować, lub <a href="/uwb/register/">rejestracja</a> aby się zarejestrować. </p2>
+                <p1> Nie jesteś zalogowany, naciśnij <a href="/uwb/login/">logowanie</a> aby się zalogować, lub <a href="/uwb/register/">rejestracja</a> aby się zarejestrować. </p1>
             	{% endif %}
-		</center></br>
+		</center>
         {% block content %}
         {% endblock %}
-	<div class="page-bottom">
-	<center><b1>Projekt - Zastosowanie Informatyki W Gospodarce.</b1></center>
+	</div>
+	<div class="footer">
+	<center><f1>Projekt - Zastosowanie Informatyki W Gospodarce.</f1></center>
 	</div>
     </body>
 </html>
