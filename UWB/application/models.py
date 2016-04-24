@@ -20,10 +20,3 @@ class Attendance(models.Model):
     lecturer = models.ForeignKey('Lecturer')
     classes = models.ForeignKey('Classes')
 
-class Mark(models.Model):
-    value = models.FloatField()
-    student = models.ForeignKey('Student')
-    lecturer = models.ForeignKey('Lecturer')
-    classes = models.ForeignKey('Classes')
-
-

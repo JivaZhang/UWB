@@ -1,72 +1,49 @@
 from django.core.management.base import BaseCommand
 from datetime import datetime
 from application.models import *
-import csv
-import os
-
-FILENAME = "/home/pawel/Workshop/gosp/UWB/attendance_data/DATA.csv"
-LOCK = "/home/pawel/Workshop/gosp/UWB/attendance_data/LOCK"
+import mysql.connector
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('-f','--force', action='store_true')
 
     def handle(self, *args, **options):
-        if self._is_lock_exist():
-            print("LOCK file exist")
-        else: 
-            self._put_lock()
-            try:
-                self._read_and_parse_data()
-                self._remove_file_data()
-            except:
-                pass
-            finally:
-                self._remove_lock()
+        self._read_and_parse_data()
 
     def _read_and_parse_data(self):
-        with open(FILENAME, 'r') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                if len(row) == 6:
-                    self._insert_row_to_database(row)
+        cnx = mysql.connector.connect(user='sql7116257', password='jsQjPHmC25', host='sql7.freemysqlhosting.net', database='sql7116257')
+        query = ("SELECT * FROM attendance_data")
+        cursor = cnx.cursor()
+        cursor.execute(query)
+        for idx, query_line in enumerate(cursor):
+            print("Try to insert {} query.".format(idx))
+            self._insert_row_to_database(query_line, idx)
 
-    def _is_lock_exist(self):
+    def _insert_row_to_database(self, line, idx):
+        correction_flag = True
         try:
-            with open(LOCK, 'r') as lock:
-                pass
-            return True
+            classes = Classes.objects.get(name=line[0])
         except:
-            return False
-
-    def _put_lock(self):
-        with open(LOCK, 'w') as lock:
-            pass
-
-    def _remove_lock(self):
-        os.remove(LOCK)
-
-    def _remove_file_data(self):
-        os.remove(FILENAME)
-
-    def _convert_attendance(self, field):
-        if field.lower() == "true":
-            return True
-        elif field.lower() == "false":
-            return False
-
-    def _convert_date(self, date):
-        return datetime.strptime(date, '%d-%m-%Y %H:%M')
-
-    def _insert_row_to_database(self, line):
-        line[4] = self._convert_date(line[4][:])
-        line[5] = self._convert_attendance(line[5][:])
-        classes = Classes.objects.get(name=line[0])
-        lecturer = Lecturer.objects.get(first_name=line[1], last_name=line[2])
-        student = Student.objects.get(index_number=line[3])
-        attendance = Attendance.objects.get(date=line[4], classes=classes, lecturer=lecturer, student=student)
-        attendance.attend = line[5]
-        attendance.save()
+            correction_flag = False
+            print("No matching classes with {} name.".format(line[0]))
+        try:
+            lecturer = Lecturer.objects.get(first_name=line[1], last_name=line[2])
+        except:
+            correction_flag = False
+            print("No matching lecturer with {} first name or {} last name.".format(line[1], line[2]))
+        try:
+            student = Student.objects.get(index_number=line[3])
+        except:
+            correction_flag = False
+            print("No matching student with {} index number.".format(line[3]))
+        if correction_flag:
+            try:
+                attendance = Attendance.objects.get(date=line[4], classes=classes, lecturer=lecturer, student=student)
+                attendance.attend = line[5]
+                attendance.save()
+                print("Query number {} inserted correctly.".format(idx))
+            except:
+                print("Not found attendance with selected date.")
 
 
 

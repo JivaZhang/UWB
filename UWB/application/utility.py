@@ -109,7 +109,6 @@ class CollectDataForLecturer(object):
 
     def _get_filtred_lecturer_data(self, lecturer):
         actual_data = self._convert_actual_date_to_classes_begin_date()
-        print("actual_data", actual_data)
         lecturer_name = "{} {}".format(lecturer.first_name, lecturer.last_name)
         self._lecturer_filtered_data = {'lecturer_filtred_data' : "", 'lecturer_name' : lecturer_name}
         classes = self._get_lecturer_classes_ids(lecturer)
