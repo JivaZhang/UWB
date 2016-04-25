@@ -22,24 +22,19 @@ class Command(BaseCommand):
     def _insert_row_to_database(self, line, idx):
         correction_flag = True
         try:
-            classes = Classes.objects.get(name=line[0])
+            lecturer = Lecturer.objects.get(first_name=line[0], last_name=line[1])
         except:
             correction_flag = False
-            print("No matching classes with {} name.".format(line[0]))
+            print("No matching lecturer with {} first name or {} last name.".format(line[0], line[1]))
         try:
-            lecturer = Lecturer.objects.get(first_name=line[1], last_name=line[2])
+            student = Student.objects.get(index_number=line[2])
         except:
             correction_flag = False
-            print("No matching lecturer with {} first name or {} last name.".format(line[1], line[2]))
-        try:
-            student = Student.objects.get(index_number=line[3])
-        except:
-            correction_flag = False
-            print("No matching student with {} index number.".format(line[3]))
+            print("No matching student with {} index number.".format(line[2]))
         if correction_flag:
             try:
-                attendance = Attendance.objects.get(date=line[4], classes=classes, lecturer=lecturer, student=student)
-                attendance.attend = line[5]
+                attendance = Attendance.objects.get(date=line[3], lecturer=lecturer, student=student)
+                attendance.attend = line[4]
                 attendance.save()
                 print("Query number {} inserted correctly.".format(idx))
             except:
