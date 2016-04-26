@@ -27,9 +27,9 @@ class Command(BaseCommand):
     def _prepare_first_set(self):
         students = Student.objects.all()
         lecturer = Lecturer.objects.all()[0]
-        classes1 = Classes.objects.get_or_create(name='Zajecia1', lecturer=lecturer)[0]
-        classes2 = Classes.objects.get_or_create(name='Zajecia2', lecturer=lecturer)[0]
-        classes3 = Classes.objects.get_or_create(name='Zajecia3', lecturer=lecturer)[0]
+        classes1 = Classes.objects.get_or_create(name='Technologie Informacyjne', lecturer=lecturer)[0]
+        classes2 = Classes.objects.get_or_create(name='Programowanie Obiektowe', lecturer=lecturer)[0]
+        classes3 = Classes.objects.get_or_create(name='Sieci Komputerowe', lecturer=lecturer)[0]
         date1 = datetime(2016, 4, 26, 9, 15)
         date2 = datetime(2016, 4, 26, 11, 15)
         date3 = datetime(2016, 4, 26, 13, 15)
@@ -113,8 +113,8 @@ class Command(BaseCommand):
         user = {
                 'username' : 'stest1',
                 'password' : 'stest1',
-                'first_name' : 'stest1',
-                'last_name' : 'nazwisko1',
+                'first_name' : 'Andrzej',
+                'last_name' : 'Mocny',
                 'staff' : False,
                 'index_number' : '111111'
             }
@@ -122,8 +122,8 @@ class Command(BaseCommand):
         user = {
                 'username' : 'stest2',
                 'password' : 'stest2',
-                'first_name' : 'stest2',
-                'last_name' : 'nazwisko2',
+                'first_name' : 'Adrian',
+                'last_name' : 'Waleczny',
                 'staff' : False,
                 'index_number' : '222222'
             }
@@ -131,8 +131,8 @@ class Command(BaseCommand):
         user = {
                 'username' : 'stest3',
                 'password' : 'stest3',
-                'first_name' : 'stest3',
-                'last_name' : 'nazwisko3',
+                'first_name' : 'Marcin',
+                'last_name' : 'Chmielowy',
                 'staff' : False,
                 'index_number' : '333333'
             }
@@ -140,8 +140,8 @@ class Command(BaseCommand):
         user = {
                 'username' : 'stest4',
                 'password' : 'stest4',
-                'first_name' : 'stest4',
-                'last_name' : 'nazwisko4',
+                'first_name' : 'Szymon',
+                'last_name' : 'Banan',
                 'staff' : False,
                 'index_number' : '444444'
             }
@@ -149,8 +149,8 @@ class Command(BaseCommand):
         user = {
                 'username' : 'wyk1',
                 'password' : 'wyk1',
-                'first_name' : 'wyk1',
-                'last_name' : 'nazwiskowyk1',
+                'first_name' : 'Marcin',
+                'last_name' : 'Wafel',
                 'staff' : True,
             }
         users.append(user)
