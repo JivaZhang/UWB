@@ -11,7 +11,7 @@ class Command(BaseCommand):
         self._read_and_parse_data()
 
     def _read_and_parse_data(self):
-        cnx = mysql.connector.connect(user='sql7116257', password='jsQjPHmC25', host='sql7.freemysqlhosting.net', database='sql7116257')
+        cnx = mysql.connector.connect(user='sql7118450', password='FFuAAD6Ci1', host='sql7.freemysqlhosting.net', database='sql7118450')
         query = ("SELECT * FROM attendance_data")
         cursor = cnx.cursor()
         cursor.execute(query)

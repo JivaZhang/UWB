@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block head %}
+    <script src="{% static 'js/staff_profile.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/staff_profile.css' %}">
 {% endblock head %}
 
@@ -8,21 +9,7 @@
 </br>
 <div class="panel">
     <center><p3><u><b>Profil wykładowcy</b></u></p3></center></br>
-    <p> Dane dla użytkownika: {{ collected_data.lecturer_name }} </p>
-    {% for classes in collected_data.lecturer_data %}
-    <p> Dane dla zajęć: {{ classes.classes_name }} </p>
-        {% for student in classes.classes_data %}
-            <p> Student: {{ student.first_name }},
-            	{{ student.last_name }},
-            	{{ student.index_number }},
-            	{{ student.attendance_date }},
-            	{% if student.attendance %}
-            		<font color="green">Obecny</font>
-            	{% else %}
-            		<font color="red">Nieobecny</font>
-            	{% endif %} 
-            </p>
-        {% endfor %}
-    {% endfor %}
+    <div id = "stage">
+    </div>
 </div>
 {% endblock content %}
