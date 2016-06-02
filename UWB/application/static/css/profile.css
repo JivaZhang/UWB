@@ -6,10 +6,33 @@
 	background-color: #CFCFCF;
 	border-color: #000;
 	text-align: center;
-	font: 28px calibri;
+	font: 30px calibri;
 }
 
 .panel-default > .panel-body {
 	background-color: #F2F2F2;
 	font: 16px calibri;
+}
+
+thead th {
+	background-color: #CFCFCF;
+	color: #000;
+	text-align: center;
+}
+
+tbody td {
+	background-color: #fff;
+	color: #000;
+	text-align: center;
+}
+
+.table {
+  border: 0.5px solid #000000;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td {
+   border: 0.5px solid #000000;
 }
