@@ -5,8 +5,23 @@
 {% endblock head %}
 
 {% block content %}
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    </br>
-    <center><p2>Witaj w Systemie Weryfikacji Obecności Studentów! </p2></center>
-    </br>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Witaj w Systemie Weryfikacji Obecności Studentów!</div>
+		<div class="panel-body">
+			{% if user.is_authenticated %}
+			<p>Zalogowałeś się jako <a href="/uwb/profile/">{{ user.username }}</a>.</p>
+			{% else %}
+			<p> Nie jesteś zalogowany! <a href="/uwb/login/">Zaloguj się</a> lub przejdź do <a href="/uwb/register/">rejestracji</a>.</p>
+			{% endif %}
+		</div>
+		</div>
+		
+		</br>
+		
+		<div class="media">
+			<img src="http://i.imgur.com/K4zeMah.png" class="center-block img-thumbnail" alt="" width="300" height="240"/>
+		</div>
+	</div>
+
 {% endblock content %}

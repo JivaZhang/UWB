@@ -1,5 +1,18 @@
-p2 {
-    color: #000000;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14pt;
+.panel-default {
+	border-color: #000;
 }
+
+.panel-default > .panel-heading {
+	background-color: #CFCFCF;
+	border-color: #000;
+	text-align: center;
+	font: 28px calibri;
+}
+
+.panel-default > .panel-body {
+	background-color: #F2F2F2;
+	font: 16px calibri;
+	text-align: center;
+}
+
+

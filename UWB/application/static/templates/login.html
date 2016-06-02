@@ -5,17 +5,47 @@
 {% endblock head %}
 
 {% block content %}
-</br>
-<div class="panel">
-	<center><p3><u><b>Logowanie</b></u></p3></center></br>
-	<center>
-	<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Logowanie</div>
+
+		<div class="panel-body">
+		
+		<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+			{% csrf_token %}
+		<div class="col-sm-2">
+			{{form}}
+			</br>
+			</br>
+		</div>
+		<div class="col-sm-offset-5 col-sm-10">
+        		<input type="submit" value="Login"/>
+			<input type="hidden" name="next" value="{{ next }}"/>
+      		</div>
+			
+		</form>
+
+
+		<!--<form method="post" action="{% url 'django.contrib.auth.views.login' %}" role="form">
 		{% csrf_token %}
-		{{form}}<br/></br>
-		<input type="submit" value="Login"/>
-		<input type="hidden" name="next" value="{{ next }}"/>
-	</form>
-	</center>
-</div>
+
+		<div class="form-group">
+      			<label for="username">Name:</label>
+      			<input type="text" class="form-control" id="username">
+    		</div>
+
+    		<div class="form-group">
+      			<label for="pwd">Password:</label>
+      			<input type="password" class="form-control" id="password">
+    		</div>
+
+		<div class="form-group">
+			<input type="submit" value="Login"/>
+			<input type="hidden" name="next" value="{{ next }}"/>
+		</div>
+		</form>-->
+		
+		</div>
+	</div>
 
 {% endblock content %}

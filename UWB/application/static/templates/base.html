@@ -2,7 +2,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<link href='https://fonts.googleapis.com/css?family=Poiret+One&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="{% static 'css/base.css' %}">
     	<title>System Weryfikacji Obecności Studentów</title>
@@ -10,30 +14,47 @@
     	{% endblock %}
     </head>
     <body>
-	<div class="page-header">
-        <center><h1><a href ="/uwb/">System Weryfikacji Obecności Studentów</a></h1></center>
-	</div>
-	<div class="site">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-	<center>
-        	{% if user.is_authenticated %}
-                <p1> Witaj <a href="/uwb/profile/">{{ user.username }}</a>, <a href="/uwb/logout/">wyloguj</a>.</p1>
-            	{% else %}
-                <p1> Nie jesteś zalogowany, naciśnij <a href="/uwb/login/">logowanie</a> aby się zalogować, lub <a href="/uwb/register/">rejestracja</a> aby się zarejestrować. </p1>
-            	{% endif %}
-	</center>
+	
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="collapse navbar-collapse">
 
-        {% block content %}
-        {% endblock %}
+				<ul class="nav navbar-nav navbar-left">
+				<li><a href="/uwb/"><span class="glyphicon glyphicon-home"></span> System Weryfikacji Obecności Studentów</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+				{% if user.is_authenticated %}
+				<li><a href="/uwb/profile/"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+				{% else %}
+				<li><a href="/uwb/register/"><span class="glyphicon glyphicon-plus-sign"></span> Rejestracja</a></li>
+				{% endif %}
+				
+				{% if user.is_authenticated %}
+                    		<li><a href="/uwb/logout/"><span class="glyphicon glyphicon-log-out"></span> Wyloguj się</a></li>
+				{% else %}
+				<li><a href="/uwb/login/"><span class="glyphicon glyphicon-log-in"></span> Zaloguj się</a></li>
+                    		{% endif %}
+				</ul>
+			</div>
+		</div>
+	</nav>
+  
+	<div class="container-fluid">    
+		<div class="col-md-6 col-md-offset-3">
 
+			</br></br></br>
+			{% block content %}
+			{% endblock %}
+
+		</div>
 	</div>
 	
 	</br>
-	<div class="footer">
-	<center>
-		<f1>Projekt - zastosowanie informatyki w gospodarce. Prototyp aplikacji webowej.</f1>
-	</center>
-	</div>
+	</br>
+
+	<footer class="footer text-center">
+  		<p>Projekt - zastosowanie informatyki w gospodarce. Aplikacja webowa.</p>
+	</footer>
 
     </body>
 </html>

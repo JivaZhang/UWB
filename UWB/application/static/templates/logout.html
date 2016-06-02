@@ -5,10 +5,15 @@
 {% endblock head %}
 
 {% block content %}
-	</br>	
-	<div class="panel">    
-	<center>
-		<p3><b><u>Zostałeś pomyślnie wylogowany!</u></b></p3>
-    	</center> 
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Zostałeś pomyślnie wylogowany!</div>
+		<div class="panel-body">
+			{% if user.is_authenticated %}
+			{% else %}
+			<p><a href="/uwb/login/">Zaloguj się</a> ponownie lub przejdź do <a href="/uwb/register/">rejestracji</a>.</p>
+			{% endif %}
+		</div>
 	</div>
+
 {% endblock content %}

@@ -1,42 +1,29 @@
-html, body {
-        height: 100%;
-    }
-
-.site {
+body {
         height: auto;
-        padding-bottom: 20px;
+	background-color: #fff;
 }
 
-.page-header {
+.navbar {
+        margin-bottom: 0;
+        border-radius: 0;
 	background-color: #B81D25;
 	margin-top: 0;
-	padding: 20px 20px 30px 30px;
+	font: #F0E6D1;
+	padding: 15px 0px 15px 0px;
+	font: 20px calibri;
 }
-
-.page-header h1, .page-header h1 a {
-	color: #ffffff;
-	font-size: 40pt;
-	text-decoration: none;
-	font-family: 'Poiret One', cursive;
-}
-
+    
 .footer {
         position: fixed;
         bottom: 0;
         width: 100%;
         background: #B81D25;
-        height: 20px;
+        padding: 10px 0px 0px 0px;
+	color: #F0E6D1;
+	font: 14px calibri;
+
 }
 
-.footer f1 {
-	color: #ffffff;
-	font: 12px calibri;
+.navbar-default .navbar-nav > li > a {
+	color: #F0E6D1; /*Change active text color here*/
 }
-
-p1 {
-	color: #000000;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 14pt;
-}
-
-

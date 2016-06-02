@@ -5,26 +5,65 @@
 {% endblock head %}
 
 {% block content %}
-</br>
-<div class="panel">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Rejestracja</div>
 	
-	    <center><p3><u><b>Rejestracja</b></u></p3></center></br>
-	    <form action="/uwb/register/" method="post" accept-charset="utf-8">
-	    {% csrf_token %}
-	    <p><label1 for="first_name"><b>Imię: </b></label1>
-	    <input type="text" name="first_name"></p>
-	    <p><label2 for="last_name"><b>Nazwisko: </b></label2>
-	    <input type="text" name="last_name"></p>
-	    <p><label3 for="username"><b>Nazwa Użytkownika: </b></label3>
-	    <input type="text" name="username"></p>
-	    <p><label4 for="password"><b>Hasło: </b></label4>
-	    <input type="password" name="password"></p>
-	    <p><label5 for="index_number"><b>Nr indeksu: </b></label5>
-	    <input type="text" name="index_number"></p>
-	    <p><label6 for="staff"><b>Wykładowca: </b></label6>
-	    <input type="checkbox" value=True name="staff"></p>
-	    <center><p><input type="submit" value="OK!"></p></center>
-	</form>
-</div>
-</br>
+		<div class="panel-body">
+			<form action="/uwb/register/" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
+			{% csrf_token %}
+
+			<div class="form-group">
+      				<label class="control-label col-sm-3" for="first_name">Imię:</label>
+      				<div class="col-sm-6">
+        				<input type="text" class="form-control" name="first_name">
+      				</div>
+    			</div>
+
+			<div class="form-group">
+      				<label class="control-label col-sm-3" for="last_name">Nazwisko:</label>
+      				<div class="col-sm-6">
+        				<input type="text" class="form-control" name="last_name">
+      				</div>
+    			</div>
+
+			<div class="form-group">
+      				<label class="control-label col-sm-3" for="username">Użytkownik:</label>
+      				<div class="col-sm-6">
+        				<input type="text" class="form-control" name="username">
+      				</div>
+    			</div>
+
+			<div class="form-group">
+      				<label class="control-label col-sm-3" for="password">Hasło:</label>
+      				<div class="col-sm-6">
+        				<input type="password" class="form-control" name="password">
+      				</div>
+    			</div>
+
+			<div class="form-group">
+      				<label class="control-label col-sm-3" for="index_number">Nr indeksu:</label>
+      				<div class="col-sm-6">
+        				<input type="text" class="form-control" name="index_number">
+      				</div>
+    			</div> 
+
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="staff">Wykładowca:</label>
+				<div class="col-sm-6">
+					<input type="checkbox" value=True name="staff">
+				</div>
+			</div>
+
+			<div class="form-group">        
+     				<div class="col-sm-offset-5 col-sm-10">
+        				<input type="submit" value="Załóż konto">
+      				</div>
+    			</div>
+			</form>
+		</div>
+		
+	</div>
+
+
 {% endblock content %}

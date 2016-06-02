@@ -1,40 +1,29 @@
-.panel {
-	width: 450px; 
-	margin: 0 auto; 
-	padding: 15px 5px 5px;
-	background: #EDEDED;
-	border: 3px solid silver;
+.panel-default {
+	border-color: #000;
+}
+
+.panel-default > .panel-heading {
+	background-color: #CFCFCF;
+	border-color: #000;
+	text-align: center;
+	font: 28px calibri;
+}
+
+.panel-default > .panel-body {
+	background-color: #F2F2F2;
 	font: 16px calibri;
-	letter-spacing: 0px;
-	-webkit-box-shadow: 0 0 3px silver; 
-	-moz-box-shadow: 0 0 3px silver; 
-	box-shadow: 0 0 3px silver;
 }
 
-p3 {
-	font: 20px calibri;
+input[type=text]:focus {
+	border-color: #FF0808;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 0, 0, 0.5);
 }
 
-label1 {
-	padding-right: 138px;
+input[type=password]:focus {
+	border-color: #FF0808;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 0, 0, 0.5);
 }
 
-label2 {
-	padding-right: 93px;
-}
+input[type=submit] {
 
-label3 {
-	padding-right: 0px;
-}
-
-label4 {
-	padding-right: 127px;
-}
-
-label5 {
-	padding-right: 78px;
-}
-
-label6 {
-	padding-right: 68px;
 }
