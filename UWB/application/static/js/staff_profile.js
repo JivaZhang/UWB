@@ -8,9 +8,9 @@ function executeQueryForAll() {
 
         for (i = 0; i < collected_data.lecturer_data.length; i++) {
 
-            $('#stage').append('<table id="table_no_' + i + '" class="table table-condensed table-bordered" width="100%"><thead><tr><th>#</th><th>Imię</th><th>Nazwisko</th><th>Nr Indeksu</th><th>Data</th><th>Obecność</th></tr></thead><tbody></tbody></table>');
+            $('#stage').append('<h4> Dane dla zajęć: <b>' + collected_data.lecturer_data[i].classes_name + '</b></h4>');
 
-            $('#table_no_').append('<h4> Dane dla zajęć: <b>' + collected_data.lecturer_data[i].classes_name + '</b></h4>')
+            $('#stage').append('<table id="table_no_' + i + '" class="table table-condensed table-bordered" width="100%"><thead><tr><th>#</th><th>Imię</th><th>Nazwisko</th><th>Nr Indeksu</th><th>Data</th><th>Obecność</th></tr></thead><tbody></tbody></table>');
 
             for (j = 0; j < collected_data.lecturer_data[i].classes_data.length; j++) {
                 student_data = collected_data.lecturer_data[i].classes_data[j]
@@ -59,7 +59,21 @@ function executeQueryForProfile() {
   setTimeout(executeQueryForProfile, 5000); 
 }
 
+function addButton() {
+    if(window.location.pathname.indexOf('all') > -1) {
+        var path = "location.href='/uwb/profile/'";
+        $('#button').html('<button onClick=' + path +  '>Przenieś do zajęć aktualnych</button>');
+    }
+    else {
+        var path = "location.href='/uwb/all/'";
+        $('#button').html('<button onClick=' + path +  '>Przenieś do wszystkich zajęć</button>');
+    }
+}
+
+
 $(document).ready(function() {
+
+    addButton();
     if(window.location.pathname.indexOf('all') > -1) {
         executeQueryForAll();
     }

@@ -10,7 +10,6 @@ function executeQuery() {
         for (i = 0; i < collected_data.student_data.length; i++) {
 
             if(collected_data.student_data[i].attendance) {
-                console
                 $('#table').append('<tr><td>' + collected_data.student_data[i].classes_name + '</td><td>' + collected_data.student_data[i].lecturer_name + '</td><td>' + collected_data.student_data[i].attendance_date + '</td><td>' + '<font color="green"> Obecny </font>' + '</td></tr>');
             }
 
