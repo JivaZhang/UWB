@@ -8,19 +8,19 @@ function executeQueryForAll() {
 
         for (i = 0; i < collected_data.lecturer_data.length; i++) {
 
-            $('#stage').append('<h4> Dane dla zajęć: <b>' + collected_data.lecturer_data[i].classes_name + '</b></h4>')
-	    $('#stage').append('<table id="table" class="table table-condensed table-bordered" width="100%"><thead><tr><th>#</th><th>Imię</th><th>Nazwisko</th><th>Nr Indeksu</th><th>Data</th><th>Obecność</th></tr></thead><tbody></tbody></table>');
+            $('#stage').append('<table id="table_no_' + i + '" class="table table-condensed table-bordered" width="100%"><thead><tr><th>#</th><th>Imię</th><th>Nazwisko</th><th>Nr Indeksu</th><th>Data</th><th>Obecność</th></tr></thead><tbody></tbody></table>');
+
+            $('#table_no_').append('<h4> Dane dla zajęć: <b>' + collected_data.lecturer_data[i].classes_name + '</b></h4>')
 
             for (j = 0; j < collected_data.lecturer_data[i].classes_data.length; j++) {
                 student_data = collected_data.lecturer_data[i].classes_data[j]
 
                 if(student_data.attendance) {
-		console
-                    $('#table').append('<tr><td>' + (j + 1) + '</td><td>' + student_data.first_name + '</td><td>' + student_data.last_name + '</td><td>' + student_data.index_number + '</td><td>' + student_data.attendance_date + '</td><td>' + '<font color="green"> Obecny </font>' + '</td></tr>');
+                    $('#table_no_' + i).append('<tr><td>' + (j + 1) + '</td><td>' + student_data.first_name + '</td><td>' + student_data.last_name + '</td><td>' + student_data.index_number + '</td><td>' + student_data.attendance_date + '</td><td>' + '<font color="green"> Obecny </font>' + '</td></tr>');
                 }
 
                 else {
-                    $('#table').append('<tr><td>' + (j + 1) + '</td><td>' + student_data.first_name + '</td><td>' + student_data.last_name + '</td><td>' + student_data.index_number + '</td><td>' + student_data.attendance_date + '</td><td>' + '<font color="red"> Nieobecny </font>' + '</td></tr>');
+                    $('#table_no_' + i).append('<tr><td>' + (j + 1) + '</td><td>' + student_data.first_name + '</td><td>' + student_data.last_name + '</td><td>' + student_data.index_number + '</td><td>' + student_data.attendance_date + '</td><td>' + '<font color="red"> Nieobecny </font>' + '</td></tr>');
                 }
             }
         }
@@ -46,7 +46,6 @@ function executeQueryForProfile() {
                 student_data = collected_data.lecturer_data[i].classes_data[j]
 
                 if(student_data.attendance) {
-		console
                     $('#table').append('<tr><td>' + (j + 1) + '</td><td>' + student_data.first_name + '</td><td>' + student_data.last_name + '</td><td>' + student_data.index_number + '</td><td>' + student_data.attendance_date + '</td><td>' + '<font color="green"> Obecny </font>' + '</td></tr>');
                 }
 
