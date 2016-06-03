@@ -62,7 +62,7 @@ function executeQueryForProfile() {
 function addButton() {
     if(window.location.pathname.indexOf('all') > -1) {
         var path = "location.href='/uwb/profile/'";
-        $('#button').html('<button onClick=' + path +  '>Przenieś do zajęć aktualnych</button>');
+        $('#button').html('<button onClick=' + path +  '>Przenieś do aktualnych zajęć</button>');
     }
     else {
         var path = "location.href='/uwb/all/'";
