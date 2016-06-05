@@ -30,12 +30,12 @@ class Command(BaseCommand):
         classes1 = Classes.objects.get_or_create(name='Technologie Informacyjne', lecturer=lecturer)[0]
         classes2 = Classes.objects.get_or_create(name='Programowanie Obiektowe', lecturer=lecturer)[0]
         classes3 = Classes.objects.get_or_create(name='Sieci Komputerowe', lecturer=lecturer)[0]
-        date1 = datetime(2016, 4, 26, 9, 15)
-        date2 = datetime(2016, 4, 26, 11, 15)
-        date3 = datetime(2016, 4, 26, 13, 15)
-        date4 = datetime(2016, 4, 26, 15, 15)
-        date5 = datetime(2016, 4, 26, 17, 5)
-        date6 = datetime(2016, 4, 26, 18, 55)
+        date1 = datetime(2016, 6, 5, 9, 15)
+        date2 = datetime(2016, 6, 5, 11, 15)
+        date3 = datetime(2016, 6, 5, 13, 15)
+        date4 = datetime(2016, 6, 5, 15, 15)
+        date5 = datetime(2016, 6, 5, 17, 5)
+        date6 = datetime(2016, 6, 5, 18, 55)
         #
         self._set_attendance(date1, students[0], lecturer, classes1, False)
         self._set_attendance(date1, students[1], lecturer, classes1, False)
